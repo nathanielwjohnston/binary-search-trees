@@ -3,3 +3,10 @@ export function Node(value) {
   let right;
   return { value, left, right };
 }
+
+export function Tree(array) {
+  function buildTree(array) {}
+
+  let root = buildTree(array);
+  return {};
+}

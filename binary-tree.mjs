@@ -51,10 +51,35 @@ export function Tree(array) {
   const dedupedArray = removeDuplicates(array);
   const sortedArray = sortArray(dedupedArray);
 
-  console.log(sortedArray);
-
   let root = buildTree(sortedArray);
 
   prettyPrint(root);
-  return {};
+
+  function insert(value) {
+    function checkNode(currentNode, value) {
+      if (currentNode.value === value) {
+        return;
+      } else if (currentNode.value > value) {
+        if (currentNode.left === null) {
+          currentNode.left = Node(value);
+          return;
+        }
+        checkNode(currentNode.left, value);
+        return;
+      } else if (currentNode.value < value) {
+        if (currentNode.right === null) {
+          currentNode.right = Node(value);
+          return;
+        }
+        checkNode(currentNode.right, value);
+        return;
+      }
+    }
+
+    checkNode(root, value);
+
+    prettyPrint(root);
+  }
+
+  return { insert };
 }

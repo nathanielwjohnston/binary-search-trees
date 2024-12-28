@@ -112,7 +112,7 @@ export function Tree(array) {
         } else {
           const successor = getSuccessor(node);
           node.value = successor.value;
-          node.right = deleteNode(successor, successor.value);
+          node.right = deleteNode(node.right, successor.value);
         }
       } else {
         if (node.value < value) {

@@ -127,45 +127,23 @@ export function Tree(array) {
       return node;
     }
 
-    // function deleteNode(node, value) {
-    //   if (node.value === value) {
-    //     return true;
-    //   } else if (node.value < value) {
-    //     // Value to delete is possibly in rh subtree
-    //     if (deleteNode(node.right)) {
-    //       // Child node (node.right) is the node to be deleted
-    //       const nodeToDelete = node.right;
-    //       if (!nodeToDelete.left && !nodeToDelete.right) {
-    //         // No children
-    //         node.right = null;
-    //       } else if (nodeToDelete.left && !nodeToDelete.right) {
-    //         // One child - left child
-    //         node.right = nodeToDelete.left;
-    //       } else if (nodeToDelete.right && !nodeToDelete.left) {
-    //         // One child - right child
-    //         node.right = nodeToDelete.right;
-    //       } else {
-    //         const successor = getSuccessor(nodeToDelete);
-    //         nodeToDelete.value = successor.value;
-    //         deleteNode(successor);
-    //       }
-    //     }
-    //   } else if (node.value > value) {
-    //     // Value to delete is possibly in lh subtree
-    //     if (deleteNode(node.left)) {
-    //       // Child node (node.left) is the node to be deleted
-    //     }
-    //   }
-
-    //   return false;
-    // }
-
     root = deleteNode(root, value);
 
     prettyPrint(root);
   }
 
-  return { insert, deleteItem };
+  function find(value) {
+    let node = root;
+
+    while (node && node.value !== value) {
+      if (value > node.value) node = node.right;
+      if (value < node.value) node = node.left;
+    }
+
+    return node;
+  }
+
+  return { insert, deleteItem, find };
 }
 
 // function compareNode(node, value) {
@@ -223,6 +201,39 @@ export function Tree(array) {
 
 //     if (compareNode(node.left)) {
 //       // Then the current node's first child in lh subtree needs deleted
+//     }
+//   }
+
+//   return false;
+// }
+
+// function deleteNode(node, value) {
+//   if (node.value === value) {
+//     return true;
+//   } else if (node.value < value) {
+//     // Value to delete is possibly in rh subtree
+//     if (deleteNode(node.right)) {
+//       // Child node (node.right) is the node to be deleted
+//       const nodeToDelete = node.right;
+//       if (!nodeToDelete.left && !nodeToDelete.right) {
+//         // No children
+//         node.right = null;
+//       } else if (nodeToDelete.left && !nodeToDelete.right) {
+//         // One child - left child
+//         node.right = nodeToDelete.left;
+//       } else if (nodeToDelete.right && !nodeToDelete.left) {
+//         // One child - right child
+//         node.right = nodeToDelete.right;
+//       } else {
+//         const successor = getSuccessor(nodeToDelete);
+//         nodeToDelete.value = successor.value;
+//         deleteNode(successor);
+//       }
+//     }
+//   } else if (node.value > value) {
+//     // Value to delete is possibly in lh subtree
+//     if (deleteNode(node.left)) {
+//       // Child node (node.left) is the node to be deleted
 //     }
 //   }
 

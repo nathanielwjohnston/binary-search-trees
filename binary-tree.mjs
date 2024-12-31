@@ -143,7 +143,50 @@ export function Tree(array) {
     return node;
   }
 
-  return { insert, deleteItem, find };
+  function levelOrder(callback) {
+    if (!callback) {
+      throw new Error("Callback required");
+    }
+
+    let node;
+    let queue = [];
+
+    queue.push(root);
+
+    while (queue.length !== 0) {
+      node = queue.shift();
+      callback(node);
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
+  }
+
+  function recursiveLevelOrder(callback) {
+    if (!callback) {
+      throw new Error("Callback required");
+    }
+
+    function recursion(callback, queue) {
+      if (queue.length === 0) {
+        return;
+      }
+
+      let node = queue.shift();
+      callback(node);
+
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+
+      recursion(callback, queue);
+    }
+
+    let queue = [];
+    queue.push(root);
+
+    recursion(callback, queue);
+  }
+
+  return { insert, deleteItem, find, levelOrder, recursiveLevelOrder };
 }
 
 // function compareNode(node, value) {

@@ -199,7 +199,28 @@ export function Tree(array) {
     traverse(root, callback);
   }
 
-  return { insert, deleteItem, find, levelOrder, recursiveLevelOrder, inOrder };
+  function preOrder(callback) {
+    function traverse(node, callback) {
+      // Node
+      callback(node);
+      // Left subtree
+      if (node.left) traverse(node.left, callback);
+      // Right subtree
+      if (node.right) traverse(node.right, callback);
+    }
+
+    traverse(root, callback);
+  }
+
+  return {
+    insert,
+    deleteItem,
+    find,
+    levelOrder,
+    recursiveLevelOrder,
+    inOrder,
+    preOrder,
+  };
 }
 
 // function compareNode(node, value) {

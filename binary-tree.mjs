@@ -187,6 +187,10 @@ export function Tree(array) {
   }
 
   function inOrder(callback) {
+    if (!callback) {
+      throw new Error("Callback required");
+    }
+
     function traverse(node, callback) {
       // Left subtree
       if (node.left) traverse(node.left, callback);
@@ -200,6 +204,10 @@ export function Tree(array) {
   }
 
   function preOrder(callback) {
+    if (!callback) {
+      throw new Error("Callback required");
+    }
+
     function traverse(node, callback) {
       // Node
       callback(node);
@@ -213,6 +221,10 @@ export function Tree(array) {
   }
 
   function postOrder(callback) {
+    if (!callback) {
+      throw new Error("Callback required");
+    }
+
     function traverse(node, callback) {
       // Left subtree
       if (node.left) traverse(node.left, callback);

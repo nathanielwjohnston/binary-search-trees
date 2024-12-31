@@ -143,7 +143,7 @@ export function Tree(array) {
     return node;
   }
 
-  function levelOrder(callback) {
+  function levelOrder(callback, root = root) {
     if (!callback) {
       throw new Error("Callback required");
     }
@@ -237,6 +237,28 @@ export function Tree(array) {
     traverse(root, callback);
   }
 
+  // TODO: Can this be done without the while loop?
+  function height(node) {
+    let lastLeaf;
+    levelOrder((currentNode) => {
+      lastLeaf = currentNode;
+      if (currentNode === node) {
+        return;
+      }
+    }, node);
+
+    let currentNode = node;
+    let height = 0;
+
+    while (currentNode !== lastLeaf) {
+      height += 1;
+      if (lastLeaf.value > currentNode.value) currentNode = currentNode.right;
+      if (lastLeaf.value < currentNode.value) currentNode = currentNode.left;
+    }
+
+    return height;
+  }
+
   return {
     insert,
     deleteItem,
@@ -246,6 +268,7 @@ export function Tree(array) {
     inOrder,
     preOrder,
     postOrder,
+    height,
   };
 }
 

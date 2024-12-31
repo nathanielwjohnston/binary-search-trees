@@ -212,6 +212,19 @@ export function Tree(array) {
     traverse(root, callback);
   }
 
+  function postOrder(callback) {
+    function traverse(node, callback) {
+      // Left subtree
+      if (node.left) traverse(node.left, callback);
+      // Right subtree
+      if (node.right) traverse(node.right, callback);
+      // Node
+      callback(node);
+    }
+
+    traverse(root, callback);
+  }
+
   return {
     insert,
     deleteItem,
@@ -220,6 +233,7 @@ export function Tree(array) {
     recursiveLevelOrder,
     inOrder,
     preOrder,
+    postOrder,
   };
 }
 

@@ -311,6 +311,21 @@ export function Tree(array) {
     return checkBalance(root);
   }
 
+  function rebalance() {
+    if (isBalanced()) {
+      return;
+    }
+
+    const treeArray = [];
+    inOrder((node) => {
+      treeArray.push(node.value);
+    });
+
+    root = buildTree(treeArray);
+
+    prettyPrint(root);
+  }
+
   return {
     insert,
     deleteItem,
@@ -323,6 +338,7 @@ export function Tree(array) {
     height,
     depth,
     isBalanced,
+    rebalance,
   };
 }
 

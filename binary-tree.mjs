@@ -239,6 +239,10 @@ export function Tree(array) {
 
   // TODO: Can this be done without the while loop?
   function height(node) {
+    if (!node) {
+      return null;
+    }
+
     let lastLeaf;
     levelOrder((currentNode) => {
       lastLeaf = currentNode;
@@ -260,6 +264,10 @@ export function Tree(array) {
   }
 
   function depth(node) {
+    if (!node) {
+      return null;
+    }
+
     let depth = 0;
 
     let currentNode = root;
@@ -275,6 +283,34 @@ export function Tree(array) {
     return depth;
   }
 
+  function isBalanced() {
+    function checkBalance(node) {
+      // check balance of child nodes
+      if (node.left) {
+        if (!checkBalance(node.left)) return false;
+      }
+
+      if (node.right) {
+        if (!checkBalance(node.right)) return false;
+      }
+      // check balance of current node
+      let tempHeight;
+
+      tempHeight = height(node.left);
+      const leftHeight = tempHeight ? tempHeight : 0;
+      tempHeight = height(node.right);
+      const rightHeight = tempHeight ? tempHeight : 0;
+
+      if (Math.abs(leftHeight - rightHeight) > 1) {
+        return false;
+      }
+
+      return true;
+    }
+
+    return checkBalance(root);
+  }
+
   return {
     insert,
     deleteItem,
@@ -286,6 +322,7 @@ export function Tree(array) {
     postOrder,
     height,
     depth,
+    isBalanced,
   };
 }
 

@@ -231,7 +231,6 @@ export function Tree(array) {
     traverse(root, callback);
   }
 
-  // TODO: Can this be done without the while loop?
   function height(node) {
     if (!node) {
       return null;
@@ -333,97 +332,3 @@ export function Tree(array) {
     rebalance,
   };
 }
-
-// function compareNode(node, value) {
-//   // On node to be deleted, or look in right subtree, or look in left subtree
-//   if (node.value === value) {
-//     // TODO: If root node is to be deleted, need to check for children and
-//     //  the root node needs changed - specifically the root variable needs changed,
-//     // along with the other changes that occur when deleting with children
-//     if (root === node) {
-//     }
-//     return true;
-//   } else if (node.value < value) {
-//     const childNode = node.right;
-//     if (!childNode) {
-//       return false;
-//     }
-
-//     if (compareNode(childNode)) {
-//       // Then the current node's first child in rh subtree needs deleted
-//       let children = 0;
-//       if (childNode.left) children++;
-//       if (childNode.right) children++;
-
-//       switch (children) {
-//         case 0:
-//           // Equivalent to deleting leaf node
-//           node.right = null;
-//           break;
-//         case 1:
-//           // Replace current node's child with this single child (grandchild essentially)
-//           if (childNode.left) node.right = childNode.left;
-//           if (childNode.right) node.right = childNode.right;
-//           break;
-//         case 2:
-//           // Replace child node with next inorder node
-//           let currentNode = childNode.right;
-//           let parentNode = childNode;
-
-//           // loop until left subtree has no left node
-//           while (currentNode.left) {
-//             parentNode = currentNode;
-//             currentNode = currentNode.left;
-//           }
-
-//           if (currentNode.right) {
-
-//           }
-//           break;
-//       }
-//     }
-//   } else if (node.value > value) {
-//     if (!node.left) {
-//       return false;
-//     }
-
-//     if (compareNode(node.left)) {
-//       // Then the current node's first child in lh subtree needs deleted
-//     }
-//   }
-
-//   return false;
-// }
-
-// function deleteNode(node, value) {
-//   if (node.value === value) {
-//     return true;
-//   } else if (node.value < value) {
-//     // Value to delete is possibly in rh subtree
-//     if (deleteNode(node.right)) {
-//       // Child node (node.right) is the node to be deleted
-//       const nodeToDelete = node.right;
-//       if (!nodeToDelete.left && !nodeToDelete.right) {
-//         // No children
-//         node.right = null;
-//       } else if (nodeToDelete.left && !nodeToDelete.right) {
-//         // One child - left child
-//         node.right = nodeToDelete.left;
-//       } else if (nodeToDelete.right && !nodeToDelete.left) {
-//         // One child - right child
-//         node.right = nodeToDelete.right;
-//       } else {
-//         const successor = getSuccessor(nodeToDelete);
-//         nodeToDelete.value = successor.value;
-//         deleteNode(successor);
-//       }
-//     }
-//   } else if (node.value > value) {
-//     // Value to delete is possibly in lh subtree
-//     if (deleteNode(node.left)) {
-//       // Child node (node.left) is the node to be deleted
-//     }
-//   }
-
-//   return false;
-// }

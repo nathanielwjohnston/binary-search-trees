@@ -53,8 +53,6 @@ export function Tree(array) {
 
   let root = buildTree(sortedArray);
 
-  prettyPrint(root);
-
   function insert(value) {
     function checkNode(currentNode, value) {
       if (currentNode.value === value) {
@@ -77,8 +75,6 @@ export function Tree(array) {
     }
 
     checkNode(root, value);
-
-    prettyPrint(root);
   }
 
   function deleteItem(value) {
@@ -128,8 +124,6 @@ export function Tree(array) {
     }
 
     root = deleteNode(root, value);
-
-    prettyPrint(root);
   }
 
   function find(value) {
@@ -143,7 +137,7 @@ export function Tree(array) {
     return node;
   }
 
-  function levelOrder(callback, root = root) {
+  function levelOrder(callback, rootNode = root) {
     if (!callback) {
       throw new Error("Callback required");
     }
@@ -151,7 +145,7 @@ export function Tree(array) {
     let node;
     let queue = [];
 
-    queue.push(root);
+    queue.push(rootNode);
 
     while (queue.length !== 0) {
       node = queue.shift();
@@ -322,8 +316,6 @@ export function Tree(array) {
     });
 
     root = buildTree(treeArray);
-
-    prettyPrint(root);
   }
 
   return {

@@ -1,8 +1,56 @@
 import { Tree } from "./binary-tree.mjs";
 
-const tree = Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
-tree.deleteItem(6345);
-tree.insert(24);
-console.log(tree.isBalanced());
+function getRandomNumbersArray() {
+  const array = [];
+
+  const maxNumber = 100;
+  const size = 20;
+
+  function getRandomNumber() {
+    return Math.floor(Math.random() * maxNumber);
+  }
+  let i = 0;
+  while (i < 20) {
+    array.push(getRandomNumber());
+    i += 1;
+  }
+
+  return array;
+}
+
+function printElements(node) {
+  process.stdout.write(node.value + " ");
+}
+
+const tree = Tree(getRandomNumbersArray());
+
+console.log(tree.isBalanced()); // true
+
+tree.levelOrder(printElements);
+console.log();
+tree.preOrder(printElements);
+console.log();
+tree.postOrder(printElements);
+console.log();
+tree.inOrder(printElements);
+console.log();
+
+tree.insert(102);
+tree.insert(106);
+tree.insert(108);
+tree.insert(110);
+
+console.log(tree.isBalanced()); // false
+
 tree.rebalance();
-console.log(tree.isBalanced());
+
+console.log(tree.isBalanced()); // true
+
+tree.levelOrder(printElements);
+console.log();
+tree.preOrder(printElements);
+console.log();
+tree.postOrder(printElements);
+console.log();
+tree.inOrder(printElements);
+console.log();

@@ -259,6 +259,22 @@ export function Tree(array) {
     return height;
   }
 
+  function depth(node) {
+    let depth = 0;
+
+    let currentNode = root;
+    while (currentNode !== node) {
+      depth += 1;
+      if (node.value > currentNode.value) {
+        currentNode = currentNode.right;
+      } else {
+        currentNode = currentNode.left;
+      }
+    }
+
+    return depth;
+  }
+
   return {
     insert,
     deleteItem,
@@ -269,6 +285,7 @@ export function Tree(array) {
     preOrder,
     postOrder,
     height,
+    depth,
   };
 }
 

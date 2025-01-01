@@ -278,7 +278,7 @@ export function Tree(array) {
 
   function isBalanced() {
     function checkBalance(node) {
-      // check balance of child nodes
+      // Check balance of child nodes
       if (node.left) {
         if (!checkBalance(node.left)) return false;
       }
@@ -286,7 +286,7 @@ export function Tree(array) {
       if (node.right) {
         if (!checkBalance(node.right)) return false;
       }
-      // check balance of current node
+      // Check balance of current node
       let tempHeight;
 
       tempHeight = height(node.left);
